@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if object %}Editar Venta{% else %}Crear Venta{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="mb-3">
+        {% if object %}
+          Editar Venta #{{ object.pk }}
+        {% else %}
+          Registrar Nueva Venta
+        {% endif %}
+      </h3>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="d-flex justify-content-between mt-4">
+          <a href="{% url 'purchase-list' %}" class="btn btn-outline-secondary">
+            Volver
+          </a>
+
+          <button type="submit" class="btn btn-primary">
+            {% if object %}Guardar Cambios{% else %}Crear Venta{% endif %}
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="mt-3 text-end text-muted">
+    <small>Módulo Ventas · Sistema Automotora</small>
+  </div>
+</div>
+{% endblock %}

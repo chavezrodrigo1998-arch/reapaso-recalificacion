@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}
+Listado de Productos
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Productos Registrados</h1>
+
+        <a href="{% url 'product-create' %}" class="btn btn-success">
+            + Agregar Producto
+        </a>
+    </div>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+
+                    <h5 class="card-title text-primary">
+                        {{ product.nombre }}
+                    </h5>
+
+                    <p class="card-text mb-1">
+                        <strong>Marca:</strong>
+                        <span class="text-dark">
+                            {{ product.marca }}
+                        </span>
+                    </p>
+
+                    <p class="card-text mb-1">
+                        <strong>Modelo:</strong>
+                        <span class="text-dark">
+                            {{ product.modelo }}
+                        </span>
+                    </p>
+
+                    <p class="card-text mb-1">
+                        <strong>Año:</strong>
+                        <span class="text-dark">
+                            {{ product.anio }}
+                        </span>
+                    </p>
+
+                    <p class="card-text mb-1">
+                        <strong>Precio:</strong>
+                        <span class="text-dark">
+                            ${{ product.precio }}
+                        </span>
+                    </p>
+
+                    <p class="card-text mb-1">
+                        <strong>Stock:</strong>
+                        <span class="text-dark">
+                            {{ product.stock }}
+                        </span>
+                    </p>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'product-update' product.pk %}" class="btn btn-sm btn-outline-primary">
+                            Editar
+                        </a>
+
+                        <a href="{% url 'product-delete' product.pk %}" class="btn btn-sm btn-outline-danger">
+                            Eliminar
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                No existen productos registrados en el sistema.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="mt-4 text-end text-muted">
+        <small>Módulo Productos · Sistema Automotora</small>
+    </div>
+</div>
+{% endblock %}

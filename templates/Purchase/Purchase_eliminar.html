@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+Eliminar Venta
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-sm border-danger">
+    <div class="card-body">
+      <h3 class="text-danger mb-3">Eliminar Venta</h3>
+
+      <p class="mb-2">
+        Vas a eliminar la venta <strong>#{{ object.pk }}</strong>.
+      </p>
+
+      <p class="text-muted mb-4">
+        Esta acción no se puede deshacer. Porque los humanos aman el riesgo.
+      </p>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="d-flex justify-content-between">
+          <a href="{% url 'venta-list' %}" class="btn btn-outline-secondary">
+            Cancelar
+          </a>
+
+          <button type="submit" class="btn btn-danger">
+            Sí, eliminar
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="mt-3 text-end text-muted">
+    <small>Módulo Ventas · Sistema Automotora</small>
+  </div>
+</div>
+{% endblock %}
